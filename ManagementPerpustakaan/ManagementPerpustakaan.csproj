@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0-preview4.26064.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Layouts\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControl\Admin\DashboardAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControl\Admin\MBAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
