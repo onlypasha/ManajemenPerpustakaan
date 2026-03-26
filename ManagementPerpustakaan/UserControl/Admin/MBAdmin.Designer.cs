@@ -32,6 +32,9 @@ partial class MBAdmin
     private void InitializeComponent()
     {
         label1 = new System.Windows.Forms.Label();
+        AllBukuGrid = new System.Windows.Forms.DataGridView();
+        TambahBuku_btn = new System.Windows.Forms.Button();
+        ((System.ComponentModel.ISupportInitialize)AllBukuGrid).BeginInit();
         SuspendLayout();
         // 
         // label1
@@ -47,14 +50,47 @@ partial class MBAdmin
         label1.Text = "Manajemen Buku";
         label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
+        // AllBukuGrid
+        // 
+        AllBukuGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+        AllBukuGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+        AllBukuGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        AllBukuGrid.Location = new System.Drawing.Point(3, 174);
+        AllBukuGrid.Name = "AllBukuGrid";
+        AllBukuGrid.RowHeadersWidth = 51;
+        AllBukuGrid.Size = new System.Drawing.Size(895, 296);
+        AllBukuGrid.TabIndex = 1;
+        AllBukuGrid.Text = "dataGridView1";
+        // 
+        // TambahBuku_btn
+        // 
+        TambahBuku_btn.BackColor = System.Drawing.SystemColors.Highlight;
+        TambahBuku_btn.Font = new System.Drawing.Font("Segoe UI", 11F);
+        TambahBuku_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+        TambahBuku_btn.Location = new System.Drawing.Point(0, 489);
+        TambahBuku_btn.Name = "TambahBuku_btn";
+        TambahBuku_btn.Size = new System.Drawing.Size(135, 50);
+        TambahBuku_btn.TabIndex = 2;
+        TambahBuku_btn.Text = "Tambah Buku";
+        TambahBuku_btn.UseVisualStyleBackColor = false;
+        TambahBuku_btn.Click += TambahBuku_btn_Click;
+        // 
         // MBAdmin
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        Controls.Add(TambahBuku_btn);
+        Controls.Add(AllBukuGrid);
         Controls.Add(label1);
         Size = new System.Drawing.Size(901, 759);
+        Load += MBAdmin_Load;
+        ((System.ComponentModel.ISupportInitialize)AllBukuGrid).EndInit();
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.Button TambahBuku_btn;
+
+    private System.Windows.Forms.DataGridView AllBukuGrid;
 
     private System.Windows.Forms.Label label1;
 

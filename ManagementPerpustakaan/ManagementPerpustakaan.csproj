@@ -28,6 +28,9 @@
     <Compile Update="UserControl\Admin\MBAdmin.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="CustomForms\InsertBukuForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,27 +1,21 @@
 using ManagementPerpustakaan.Services;
-using Microsoft.Data.SqlClient;
 
 namespace ManagementPerpustakaan.UserControl.Admin;
 
 public partial class DashboardAdmin : System.Windows.Forms.UserControl
 {
     private readonly BukuService _bukuService = new();
+    private readonly KategoriService _kategoriService = new();
 
     public DashboardAdmin()
     {
         InitializeComponent();
     }
+    
 
-    private void RefreshButton_Click(object sender, EventArgs e)
+    private void DashboardAdmin_Load(object sender, EventArgs e)
     {
-        try
-        {
-            dgv_admin.DataSource = _bukuService.GetAllBuku();
-        }
-        catch (SqlException ex)
-        {
-            MessageBox.Show($"Gagal memuat data: {ex.Message}", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        jb_label.Text = _bukuService.JumlahBuku().ToString();
+        jk_label.Text = _kategoriService.JumlahKategori().ToString();
     }
 }
