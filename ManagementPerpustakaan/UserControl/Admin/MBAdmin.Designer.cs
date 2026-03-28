@@ -31,10 +31,14 @@ partial class MBAdmin
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         label1 = new System.Windows.Forms.Label();
         AllBukuGrid = new System.Windows.Forms.DataGridView();
+        EditDeleteMenu = new System.Windows.Forms.ContextMenuStrip(components);
+        deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
         TambahBuku_btn = new System.Windows.Forms.Button();
         ((System.ComponentModel.ISupportInitialize)AllBukuGrid).BeginInit();
+        EditDeleteMenu.SuspendLayout();
         SuspendLayout();
         // 
         // label1
@@ -55,12 +59,27 @@ partial class MBAdmin
         AllBukuGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
         AllBukuGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
         AllBukuGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        AllBukuGrid.ContextMenuStrip = EditDeleteMenu;
         AllBukuGrid.Location = new System.Drawing.Point(3, 174);
         AllBukuGrid.Name = "AllBukuGrid";
         AllBukuGrid.RowHeadersWidth = 51;
         AllBukuGrid.Size = new System.Drawing.Size(895, 296);
         AllBukuGrid.TabIndex = 1;
         AllBukuGrid.Text = "dataGridView1";
+        // 
+        // EditDeleteMenu
+        // 
+        EditDeleteMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+        EditDeleteMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { deleteMenu });
+        EditDeleteMenu.Name = "EditDeleteMenu";
+        EditDeleteMenu.Size = new System.Drawing.Size(123, 28);
+        // 
+        // deleteMenu
+        // 
+        deleteMenu.Name = "deleteMenu";
+        deleteMenu.Size = new System.Drawing.Size(122, 24);
+        deleteMenu.Text = "Delete";
+        deleteMenu.Click += deleteMenu_Click;
         // 
         // TambahBuku_btn
         // 
@@ -85,8 +104,12 @@ partial class MBAdmin
         Size = new System.Drawing.Size(901, 759);
         Load += MBAdmin_Load;
         ((System.ComponentModel.ISupportInitialize)AllBukuGrid).EndInit();
+        EditDeleteMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ContextMenuStrip EditDeleteMenu;
+    private System.Windows.Forms.ToolStripMenuItem deleteMenu;
 
     private System.Windows.Forms.Button TambahBuku_btn;
 

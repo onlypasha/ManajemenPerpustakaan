@@ -14,22 +14,17 @@ public partial class MainForm : Form
         uc.Dock = DockStyle.Fill;
         splitContainer1.Panel2.Controls.Add(uc);
     }
+    
 
-    private void logout_btn_Click(object sender, EventArgs e)
-    {
-        new LoginForm().Show();
-        this.Close();
-    }
-
-    private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+    private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
     {
         switch (e.Node.Name)
         {
-            case "DashboardAdmin_NODE":
-                DashboardAdmin dashboardAdmin = new DashboardAdmin();
-                TampilkanHalaman(dashboardAdmin);
+            case "DashboardAdmin_node":
+                DashboardAdmin DashboardAdmin = new DashboardAdmin();
+                TampilkanHalaman(DashboardAdmin);
                 break;
-            case "MBAdmin_NODE":
+            case "MBAdmin_node":
                 MBAdmin ManajemenBukuAdmin = new MBAdmin();
                 TampilkanHalaman(ManajemenBukuAdmin);
                 break;
@@ -37,5 +32,12 @@ public partial class MainForm : Form
                 MessageBox.Show("Halaman Belum Tersedia");
                 break;
         }
+    }
+
+    private void Logout_btn_Click(object sender, EventArgs e)
+    {
+        LoginForm loginForm = new LoginForm();
+        this.Close();
+        loginForm.Show();
     }
 }

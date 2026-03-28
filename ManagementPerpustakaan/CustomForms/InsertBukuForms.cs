@@ -26,9 +26,15 @@ public partial class InsertBukuForms : Form
         this.Close();
     }
 
+    public Buku BukuBaru
+    {
+        get;
+        private set;
+    }
+
     private void Insert_btn_Click(object sender, EventArgs e)
     {
-        var bukuBaru = new Buku
+        BukuBaru = new Buku
         {
             JudulBuku = JudulBuku_field.Text,
             TahunTerbit = int.Parse(TahunTerbit_field.Text),
@@ -39,6 +45,7 @@ public partial class InsertBukuForms : Form
             Stok = int.Parse(Stok_field.Text)
         };
 
-        _bukuService.InsertBuku(bukuBaru);
+        this.DialogResult = DialogResult.OK;
+        this.Close();
     }
 }

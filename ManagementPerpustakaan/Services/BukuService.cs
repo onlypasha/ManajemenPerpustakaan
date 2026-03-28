@@ -88,6 +88,16 @@ public class BukuService
         connection.Open();
         command.ExecuteNonQuery();
     }
+
+    public void DeleteBuku(int idBuku)
+    {
+        const string query = @"DELETE FROM MS_Buku WHERE id_buku = @idBuku";
+        using var connection = new SqlConnection(DatabaseHelper.GetConnectionString());
+        using var command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@idBuku", idBuku);
+        connection.Open();
+        command.ExecuteNonQuery();
+    }
 }
 
 public static class SqlDataReaderExtensions

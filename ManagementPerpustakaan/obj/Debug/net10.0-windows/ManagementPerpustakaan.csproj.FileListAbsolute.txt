@@ -109,3 +109,4 @@ C:\Users\abdeepasha\Documents\NGODINGYUKK\winforms\ManajemenPerpustakaan\Managem
 C:\Users\abdeepasha\Documents\NGODINGYUKK\winforms\ManajemenPerpustakaan\ManagementPerpustakaan\obj\Debug\net10.0-windows\ManagementPerpustakaan.pdb
 C:\Users\abdeepasha\Documents\NGODINGYUKK\winforms\ManajemenPerpustakaan\ManagementPerpustakaan\obj\Debug\net10.0-windows\ManagementPerpustakaan.genruntimeconfig.cache
 C:\Users\abdeepasha\Documents\NGODINGYUKK\winforms\ManajemenPerpustakaan\ManagementPerpustakaan\obj\Debug\net10.0-windows\ref\ManagementPerpustakaan.dll
+C:\Users\abdeepasha\Documents\NGODINGYUKK\winforms\ManajemenPerpustakaan\ManagementPerpustakaan\obj\Debug\net10.0-windows\ManagementPerpustakaan.UserControl.Admin.MBAdmin.resources
