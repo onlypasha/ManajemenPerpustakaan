@@ -6,6 +6,7 @@ namespace ManagementPerpustakaan.UserControl.Admin;
 public partial class MBAdmin : System.Windows.Forms.UserControl
 {
     private readonly BukuService _bukuService = new();
+
     public MBAdmin()
     {
         InitializeComponent();
@@ -13,51 +14,45 @@ public partial class MBAdmin : System.Windows.Forms.UserControl
 
     private void MBAdmin_Load(object sender, EventArgs e)
     {
-        AllBukuGrid.DataSource = _bukuService.GetAllBuku();
-
-        /*for (int i = 0; i < AllBukuGrid.Rows.Count; i++)
-        {
-            AllBukuGrid.Rows[i].Cells["No"].Value = i + 1;
-        }*/
+        RefreshGrid();
         AllBukuGrid.Columns["IdBuku"].Visible = false;
         AllBukuGrid.Columns["IdKategori"].Visible = false;
     }
 
+    private void RefreshGrid()
+    {
+        AllBukuGrid.DataSource = _bukuService.GetAllBuku();
+    }
+
     private void TambahBuku_btn_Click(object sender, EventArgs e)
     {
-        using (var dialog = new InsertBukuForms())
+        using var dialog = new InsertBukuForms();
+        if (dialog.ShowDialog() == DialogResult.OK)
         {
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _bukuService.InsertBuku(dialog.BukuBaru);
-                AllBukuGrid.DataSource = _bukuService.GetAllBuku();
-                MessageBox.Show("Buku berhasil ditambahkan!", 
-                    "Info", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Information);
-            }
+            _bukuService.InsertBuku(dialog.BukuBaru);
+            RefreshGrid();
+            MessageBox.Show("Buku berhasil ditambahkan!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
     private void deleteMenu_Click(object sender, EventArgs e)
     {
-        if (AllBukuGrid.CurrentRow != null)
+        if (AllBukuGrid.CurrentRow == null) return;
+
+        string judulBuku = (string)AllBukuGrid.CurrentRow.Cells["JudulBuku"].Value;
+        int idBuku = (int)AllBukuGrid.CurrentRow.Cells["IdBuku"].Value;
+
+        var result = MessageBox.Show(
+            $"Apakah anda yakin akan menghapus buku \"{judulBuku}\"?",
+            "Konfirmasi Hapus",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+
+        if (result == DialogResult.Yes)
         {
-            string judulBuku = (string)AllBukuGrid.CurrentRow.Cells["JudulBuku"].Value;
-            int idBuku = (int)AllBukuGrid.CurrentRow.Cells["IdBuku"].Value;
-
-            DialogResult konfirmasiHapus = MessageBox.Show(
-                $"Apakah anda yakin akan menghapus buku {judulBuku}?",
-                "Hapus buku",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question);
-
-            if (konfirmasiHapus == DialogResult.OK)
-            {
-                _bukuService.DeleteBuku(idBuku);
-                AllBukuGrid.DataSource = _bukuService.GetAllBuku();
-                MessageBox.Show("Buku berhasil di hapus", "Info");
-            }
+            _bukuService.DeleteBuku(idBuku);
+            RefreshGrid();
+            MessageBox.Show("Buku berhasil dihapus.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

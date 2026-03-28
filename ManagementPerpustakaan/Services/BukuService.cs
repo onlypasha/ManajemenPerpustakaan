@@ -1,5 +1,6 @@
 using ManagementPerpustakaan.Models;
 using Microsoft.Data.SqlClient;
+using ManagementPerpustakaan.Extensions;
 
 namespace ManagementPerpustakaan.Services;
 
@@ -97,14 +98,5 @@ public class BukuService
         command.Parameters.AddWithValue("@idBuku", idBuku);
         connection.Open();
         command.ExecuteNonQuery();
-    }
-}
-
-public static class SqlDataReaderExtensions
-{
-    public static string GetStringOrEmpty(this SqlDataReader reader, string columnName)
-    {
-        var ordinal = reader.GetOrdinal(columnName);
-        return reader.IsDBNull(ordinal) ? string.Empty : reader.GetString(ordinal);
     }
 }

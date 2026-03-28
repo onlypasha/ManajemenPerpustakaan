@@ -1,7 +1,11 @@
-﻿namespace ManagementPerpustakaan;
+﻿using ManagementPerpustakaan.Services;
+
+namespace ManagementPerpustakaan;
 
 public partial class LoginForm : Form
 {
+    private readonly IAuthService _authService = new AuthService();
+
     public LoginForm()
     {
         InitializeComponent();
@@ -14,37 +18,28 @@ public partial class LoginForm : Form
 
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            MessageBox.Show("Username atau password kosong");
+            MessageBox.Show("Username atau password kosong", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        if (_authService.Login(username, password))
+        {
+            new Layouts.MainForm().Show();
+            this.Hide();
         }
         else
         {
-            if (username == "admin" && password == "admin")
-            {
-                //new Admin.Dashboard().Show();
-                new Layouts.MainForm().Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Username atau password salah");
-            }
+            MessageBox.Show("Username atau password salah", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
     private void KembaliBtn_Click(object sender, EventArgs e)
     {
-        this.Close();
+        Application.Exit();
     }
 
     private void LihatPasswordChk_CheckedChanged(object sender, EventArgs e)
     {
-        if (LihatPasswordChk.Checked)
-        {
-            PasswordTextBox.UseSystemPasswordChar = false;
-        }
-        else
-        {
-            PasswordTextBox.UseSystemPasswordChar = true;
-        }
+        PasswordTextBox.UseSystemPasswordChar = !LihatPasswordChk.Checked;
     }
 }
