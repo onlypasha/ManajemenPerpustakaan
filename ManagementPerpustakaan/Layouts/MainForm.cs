@@ -6,6 +6,7 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
+        this.Text = "Management Perpustakaan";
     }
 
     private void TampilkanHalaman(System.Windows.Forms.UserControl uc)
