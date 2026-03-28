@@ -74,7 +74,7 @@ partial class DashboardAdmin
         label2.Name = "label2";
         label2.Size = new System.Drawing.Size(140, 28);
         label2.TabIndex = 1;
-        label2.Text = "Jumlah Buku";
+        label2.Text = "Buku";
         label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
         // 
         // jb_label
@@ -107,7 +107,7 @@ partial class DashboardAdmin
         label3.Name = "label3";
         label3.Size = new System.Drawing.Size(140, 28);
         label3.TabIndex = 1;
-        label3.Text = "Jumlah Kategori";
+        label3.Text = "Kategori";
         label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
         // 
         // jk_label
