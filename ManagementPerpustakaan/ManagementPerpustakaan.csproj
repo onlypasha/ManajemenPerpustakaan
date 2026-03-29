@@ -31,6 +31,9 @@
     <Compile Update="CustomForms\InsertBukuForms.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CustomForms\UpdateBukuForms.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

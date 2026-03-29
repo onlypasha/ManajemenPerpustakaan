@@ -90,6 +90,64 @@ public class BukuService
         command.ExecuteNonQuery();
     }
 
+    public void UpdateBuku(Buku buku)
+    {
+        const string query = @"
+        UPDATE MS_Buku 
+        SET judul_buku = @JudulBuku, 
+            tahun_terbit = @TahunTerbit, 
+            id_kategori = @IdKategori, 
+            deskripsi_buku = @DeskripsiBuku, 
+            user_edit = @UserEdit, 
+            time_edit = @TimeEdit, 
+            penulis = @Penulis, 
+            status = @Status, 
+            stok = @Stok
+        WHERE id_buku = @IdBuku";
+
+        using var connection = new SqlConnection(DatabaseHelper.GetConnectionString());
+        using var command = new SqlCommand(query, connection);
+
+        command.Parameters.AddWithValue("@IdBuku", buku.IdBuku);
+        command.Parameters.AddWithValue("@JudulBuku", buku.JudulBuku);
+        command.Parameters.AddWithValue("@TahunTerbit", buku.TahunTerbit);
+        command.Parameters.AddWithValue("@IdKategori", buku.IdKategori);
+        command.Parameters.AddWithValue("@DeskripsiBuku", string.IsNullOrEmpty(buku.DeskripsiBuku) ? DBNull.Value : buku.DeskripsiBuku);
+        command.Parameters.AddWithValue("@UserEdit", "Admin");
+        command.Parameters.AddWithValue("@TimeEdit", DateTime.Now);
+        command.Parameters.AddWithValue("@Penulis", buku.Penulis);
+        command.Parameters.AddWithValue("@Status", buku.Status);
+        command.Parameters.AddWithValue("@Stok", buku.Stok);
+
+        connection.Open();
+        command.ExecuteNonQuery();
+    }
+
+    public Buku GetDetailBukuById(int id_buku)
+    {
+        const string query = @"SELECT * from MS_Buku where id_buku = @id_buku";
+        using var connection = new SqlConnection(DatabaseHelper.GetConnectionString());
+        using var command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@id_buku", id_buku);
+        connection.Open();
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            return new Buku
+            {
+                IdBuku =  (int)reader["id_buku"],
+                JudulBuku = reader["judul_buku"].ToString(),
+                Penulis = reader["penulis"].ToString(),
+                TahunTerbit = (int)reader["tahun_terbit"],
+                IdKategori = (int)reader["id_kategori"],
+                Stok = (int)reader["stok"],
+                DeskripsiBuku =  reader["deskripsi_buku"].ToString(),
+            };
+        }
+
+        return null;
+    }
+
     public void DeleteBuku(int idBuku)
     {
         const string query = @"DELETE FROM MS_Buku WHERE id_buku = @idBuku";

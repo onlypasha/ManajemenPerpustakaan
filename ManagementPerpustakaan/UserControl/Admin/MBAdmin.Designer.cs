@@ -37,6 +37,7 @@ partial class MBAdmin
         EditDeleteMenu = new System.Windows.Forms.ContextMenuStrip(components);
         deleteMenu = new System.Windows.Forms.ToolStripMenuItem();
         TambahBuku_btn = new System.Windows.Forms.Button();
+        updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         ((System.ComponentModel.ISupportInitialize)AllBukuGrid).BeginInit();
         EditDeleteMenu.SuspendLayout();
         SuspendLayout();
@@ -70,14 +71,14 @@ partial class MBAdmin
         // EditDeleteMenu
         // 
         EditDeleteMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-        EditDeleteMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { deleteMenu });
+        EditDeleteMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { deleteMenu, updateToolStripMenuItem });
         EditDeleteMenu.Name = "EditDeleteMenu";
-        EditDeleteMenu.Size = new System.Drawing.Size(123, 28);
+        EditDeleteMenu.Size = new System.Drawing.Size(211, 80);
         // 
         // deleteMenu
         // 
         deleteMenu.Name = "deleteMenu";
-        deleteMenu.Size = new System.Drawing.Size(122, 24);
+        deleteMenu.Size = new System.Drawing.Size(210, 24);
         deleteMenu.Text = "Delete";
         deleteMenu.Click += deleteMenu_Click;
         // 
@@ -94,6 +95,13 @@ partial class MBAdmin
         TambahBuku_btn.UseVisualStyleBackColor = false;
         TambahBuku_btn.Click += TambahBuku_btn_Click;
         // 
+        // updateToolStripMenuItem
+        // 
+        updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+        updateToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+        updateToolStripMenuItem.Text = "Update";
+        updateToolStripMenuItem.Click += updateToolStripMenuItem_Click;
+        // 
         // MBAdmin
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -107,6 +115,8 @@ partial class MBAdmin
         EditDeleteMenu.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
 
     private System.Windows.Forms.ContextMenuStrip EditDeleteMenu;
     private System.Windows.Forms.ToolStripMenuItem deleteMenu;

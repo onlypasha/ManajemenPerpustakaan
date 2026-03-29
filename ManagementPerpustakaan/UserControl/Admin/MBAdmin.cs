@@ -55,4 +55,21 @@ public partial class MBAdmin : System.Windows.Forms.UserControl
             MessageBox.Show("Buku berhasil dihapus.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
+
+    private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (AllBukuGrid.CurrentRow == null) return;
+        int idBuku = (int)AllBukuGrid.CurrentRow.Cells["IdBuku"].Value;
+        
+        using var dialog = new UpdateBukuForms(idBuku);
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            if (dialog.BukuUpdate != null)
+            {
+                _bukuService.UpdateBuku(dialog.BukuUpdate);
+                RefreshGrid();
+                MessageBox.Show("Buku berhasil diperbarui!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
 }
